@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>JavaScript Basics</title>
+
+	<!-- custom CSS -->
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,600" rel="stylesheet">
+	<style type="text/css">
+		html {
+			font-family: 'Ubuntu', sans-serif;
+			display: block;
+			margin: 0px auto;
+			color: #333333;
+		}
+
+		#container section,
+		header {
+			width: 97%;
+			border: 1px solid #888;
+			padding: 10px;
+			border-radius: 5px;
+		}
+
+		.task_box {
+			text-align: left;
+			width: 47%;
+			display: inline-block;
+			border: 1px solid #888;
+			padding: 10px;
+			margin: 5px;
+			border-radius: 5px;
+			vertical-align: bottom;
+		}
+
+		fieldset {
+			border-radius: 5px;
+			background: #efefef;
+			border: 0;
+		}
+
+		header,
+		section {
+			margin: 0.5em;
+		}
+	</style>
+
+
+</head>
+
+<body>
+
+	<div id="container">
+		<header>
+			<h1>Grundläggande JavaScript</h1>
+			<article>
+				<h2>Om uppgiften</h2>
+				<p>Inlämningsuppgift 1 består av att skriva funktionalitet i form av funktioner/procedurer
+					till en färdig mallsida.</p>
+				<p>Allmänt kriterium för samtliga inlämningsuppgifter: Koden ska vara
+					lättläslig, dvs ha kommentarer, bra namn på variabler, funktionsnamn etc. och ha en
+					bra indentering.</p>
+				<p>Denna HTML-sida består av en serie formulär med knappar kopplade till händelser.
+					Varje knapp i uppgift 1-6 anropar en funktion i script.js. Uppgiften går ut på att
+					färdigställa funktionerna så att de utför vad som förväntas av dem.
+					För uppgift 7 och 8 ska du skapa funktioner som anropas och genomför det som stå i
+					rutan.</p>
+				<p>Utöver dessa uppgifter finns begrepp att förklara och reda ut. Dessa förklaringar och
+					redogörelser skrivs i .js-filen.</p>
+				<h3>G-kriterier</h3>
+				<ul>
+					<li>Minst 8 poäng på del 1</li>
+					<li>Minst 4 funktioner av 1-6 fungerar som tänkt</li>
+					<li>Minst 1 funktion av 7-8 fungerar som tänkt</li>
+				</ul>
+				<h3>VG-kriterier</h3>
+				<ul>
+					<li>Minst 12 poäng på del 1</li>
+					<li>Samtliga funktioner 1-8 fungerar som tänkt</li>
+					<li>Minst 2 av 3 VG-tillägg i uppgifterna 1-3 är implementerade</li>
+				</ul>
+			</article>
+		</header>
+		<section>
+			<div class="task_box">
+				<h2>1. Byt ut text</h2>
+				<p>I HTML-elementet #text längst ner på sidan finns textsträngen <em>AI</em>
+					uppmärkt med span-element. Genom att loopa igenom dessa element ska deras innehåll bytas
+					ut mot den textsträng som matas in i formuläret när knappen klickas på.</p>
+
+				<p>VG: Utöka funktionen så att även ett ord som inte finns i span-element byts ut,
+					förslagsvis <em>robotic mower</em>.</p>
+				<form>
+					<fieldset>
+						<input type="text" id="input_text" value="" />
+						<input onclick="swap_text()" value="Byt ut text" type="button" />
+					</fieldset>
+				</form>
+			</div>
+			<div class="task_box">
+				<h2>2. Byt ut färg och font</h2>
+				<p>Font och färg på samtliga rubriker skall ändras dynamiskt vid tryck på knappen,
+					du väljer själv färg och font. För G kan färg och font hårdkodas i
+					funktionen.</p>
+				<p>VG: använd formuläret för att skicka in färg och font.</p>
+				<form>
+					<fieldset>
+						<label for="font_color">Font color</label><br />
+						<input type="text" id="font_color" value="" /><br />
+						<label for="font_family">Font</label><br />
+						<input type="text" id="font_family" value="" /><br />
+						<input onclick="swap_color_and_font()" value="Byt ut färg och font" type="button" />
+					</fieldset>
+				</form>
+			</div>
+			<div class="task_box">
+				<h2>3. Multiplicera</h2>
+				<p>I denna uppgift ska användaren fylla i två textrutor (#number_1 och #number_2) och trycka
+					på knappen. Ifall båda är positiva tal och under 1000 ska de multipliceras. Om
+					något av talen är negativt eller ej under 1000, eller ej ett tal, så ska ett
+					felmeddelande visas. All output ska visas i &lt;span&gt;-elementet #result nedan.</p>
+
+				<form>
+					<fieldset>
+						<input type="text" id="number_1" value="" size="5" /> *
+						<input type="text" id="number_2" value="" size="5" /> = <span id="result"></span>
+						<input onclick="multiply()" value="Beräkna" type="button" />
+					</fieldset>
+				</form>
+
+			</div>
+			<div class="task_box">
+				<h2>4. Räkna tecken och ord</h2>
+				<p>I denna uppgift ska användaren skriva in text och vid händelsen onkeyup ska en funktion
+					anropas som räknar ut antal tecken textrutan #text_count.</p>
+
+				<p>VG: bygg ut funktionen så att den också räknar ut antal ord. Hint: för att
+					räkna ord kan du räkna mellanslag.</p>
+
+				<p>ID för &lt;span&gt;-elementen är #char_count och #word_count.</p>
+				<form>
+					<fieldset>
+						<textarea id="text_count" onkeyup="count_chars_and_words()"></textarea>
+						<p>Antal tecken: <span id="char_count"></span><br />
+							Antal ord: <span id="word_count"></span></p>
+					</fieldset>
+				</form>
+			</div>
+			<div class="task_box">
+				<h2>5. Konvertera kommaseparerad text till ul-lista</h2>
+				<p>I textfältet #csv_text nedan ska en kommaseparerad text skrivas in. Vid tryck på knappen
+					anropas en funktion som delar upp texten i dess beståndsdelar och skriver ut en ul-lista till
+					elementet #converted_list.</p>
+				<form>
+					<fieldset>
+						<textarea id="csv_text" onkeyup=""></textarea>
+						<input onclick="convert_to_list()" value="Konvertera" type="button" />
+					</fieldset>
+				</form>
+				<div id="converted_list">
+
+				</div>
+			</div>
+			<div class="task_box">
+				<h2>6. Konvertera</h2>
+				<p>Formuläret nedan innehåller en textbox #to_convert och en select-lista #unit med enheter.
+					Uppgiften går ut på att skriva en konverterare som plockar upp värdet av respektive
+					element och konverterar till lämplig enhet, som sedan skrivs ut till #converted. Använd en
+					switch för att testa enhet och returnera rätt värde och kom ihåg att testa
+					värdet först.</p>
+
+				<form>
+					<fieldset>
+						Välj värde att konvertera: <input type="text" id="to_convert" value="" size="5" /><br />
+						Välj enhet:
+						<select id="unit">
+							<option value="F">Fahrenheit till Celcius</option>
+							<option value="cup">cup till liter</option>
+							<option value="lb">lb/pound till kg</option>
+						</select>
+						<input onclick="converter()" value="Konvertera" type="button" />
+						<input type="text" id="converted" value="[resultat här]" size="15" />
+					</fieldset>
+				</form>
+
+			</div>
+
+			<div class="task_box">
+				<h2>7. åtta frukter</h2>
+				<p>Vid klick på knappen ska en funktion anropas. Denna funktion ska skriva ut en lista med
+					frukterna i #fruits. Du behöver koppla knappen till ditt valda funktionsnamn.</p>
+
+				<form>
+					<fieldset>
+						<input onclick="fruits()" value="Generera fruktlistan" type="button" />
+					</fieldset>
+				</form>
+				<div id="fruits">
+
+				</div>
+
+			</div>
+			<div class="task_box">
+				<h2>8. Månader</h2>
+				<p>Vid onchange ska en funktion anropas. Denna funktion ska skriva ut motsvarande månad i #month.
+					Du behöver koppla select-elementet till ditt valda funktionsnamn.</p>
+
+				<form>
+					<fieldset>
+						Välj månadens nummer:
+						<select id="month_number" onchange="get_month()">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						<input type="text" id="month" value="[resultat här]" size="15" />
+					</fieldset>
+				</form>
+
+			</div>
+		</section>
+		<section>
+			<article id="text">
+				<h2>Texten</h2>
+				<p>When I was walking with my two year old daughter the other day we saw a robotic mower, a fairly
+					common sight these days, and I could not resist thinking about <span>AI</span>. What if robotic
+					mowers got the upper hand of the technological development and were the first to gain artificial
+					general intelligence? I was thinking about a thought experiment named <a
+						href="https://wiki.lesswrong.com/wiki/Paperclip_maximizer" rel="noreferrer">The paperclip
+						maximiser</a>, once introduced by Nick Boström. Basically, the <span>AI</span> would
+					develop itself so to optimise itself in reaching its goal, which would be manufacturing paperclips.
+					If there was no termination condition it would just go on making paperclips, perhaps creating
+					machines creating paperclips, and when resources of the planet were exhausted, attempt to make use
+					of other celestial bodies (it would of course have to find a way to reach them, and preferrably
+					before resources were exhausted, but we suppose that we are talking about what by then would be a
+					very intelligent machine or piece of software).</p>
+				<p>What would the robotic mower do? Would it be satisfied with finishing the lawn for now, or would it
+					attempt to find more grass to cut? Would it start to grow grass in other areas and create more
+					robotic mowers, perhaps mowers receiving energy from the grass that they cut? And if we turn our
+					attention to self driving cars, would they try to optimise the time for a trip by creating shorter
+					roads from A to B? Well, it turned out to be a silly thought experiment in the end, but termination
+					conditions remain important.</p>
+				<p>Sometimes, scientific breakthroughs happen because of sharper senses and more computational power.
+					<span>AI</span> can provide that. Scientific breakthroughs might also shift perspectives, and I
+					expect an <span>AI</span> to at least shift its perspective, but that it would still be
+					recognisable. I suppose that a termination condition requirement is partly from programming, a human
+					activity which creates <span>AI</span>, which then might start programming. Our thoughts about
+					<span>AI</span> say something about ourselves. We think that things we program need a good set of
+					rules and a clearly defined termination condition because that is (partly) how our applications work
+					following the programming languages and machines we have developed.
+				</p>
+
+			</article>
+		</section>
+		<footer>
+
+		</footer>
+	</div>
+	<script src="scripts.js">
+	</script>
+</body>
+
+</html>
